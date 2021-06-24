@@ -32,12 +32,19 @@ public class Movment : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.A))
         {
-            transform.Rotate(Vector3.forward*rotateThrust*Time.deltaTime);
+            ApplyRotation(rotateThrust);
         }
         else if(Input.GetKey(KeyCode.D))
         {
-            transform.Rotate(-Vector3.forward*rotateThrust*Time.deltaTime);
+            ApplyRotation(-rotateThrust);
 
         }
+    }
+
+    void ApplyRotation(float rotationValue)
+    {
+        myRigidBody.freezeRotation = true;
+        transform.Rotate(Vector3.forward * rotationValue * Time.deltaTime);
+        myRigidBody.freezeRotation = false;
     }
 }
