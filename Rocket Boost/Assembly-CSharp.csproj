@@ -36,7 +36,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Movment.cs" />
+     <Compile Include="Assets\Scripts\Movment.cs" />
+     <Compile Include="Assets\Scripts\CollisionHandler.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:/Program Files/Unity/Editor/2020.3.11f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
