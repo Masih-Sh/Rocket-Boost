@@ -14,22 +14,30 @@ public class CollisionHandler : MonoBehaviour
             break;
 
             case "Finish":
-            Debug.Log("this is the landing pad");
-            break;
-
-            case "Fuel":
-            Debug.Log("this is fuel");
-            break;
+            LoadNextLevel();
+            break;           
 
             default:
-            ReloadScene();
+            ReloadLevel ();
              break;
         }
     }
 
-    void ReloadScene()
+    void ReloadLevel()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
+    }
+
+    void LoadNextLevel()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
+        if(nextSceneIndex == SceneManager.sceneCountInBuildSettings)
+        {
+            nextSceneIndex = 0;
+        }
+        SceneManager.LoadScene(nextSceneIndex);
+
     }
 }
