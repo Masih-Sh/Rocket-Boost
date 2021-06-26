@@ -13,13 +13,15 @@ public class CollisionHandler : MonoBehaviour
 
     AudioSource myAudioSource;
 
+    bool inTransition = false;
+
      void Start() 
     {
         myAudioSource = GetComponent<AudioSource>();
     }
     void OnCollisionEnter(Collision other) 
     {
-
+        if(inTransition){return;}
         switch(other.gameObject.tag)
         {
             case "Friendly":
@@ -55,15 +57,21 @@ public class CollisionHandler : MonoBehaviour
 
     void CrashSequence()
     {
+        inTransition = true;
+        myAudioSource.Stop();
         myAudioSource.PlayOneShot(crashSound);      
         GetComponent<Movment>().enabled = false;
         Invoke("ReloadLevel",delayTime);
+
     }
 
     void FinishSequence()
     {
-         myAudioSource.PlayOneShot(winSound);
+        inTransition = true;
+        myAudioSource.Stop();
+        myAudioSource.PlayOneShot(winSound);
         GetComponent<Movment>().enabled = false;
         Invoke("LoadNextLevel",delayTime);
+
     }
 }
