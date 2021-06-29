@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,13 +21,33 @@ public class CollisionHandler : MonoBehaviour
 
     bool inTransition = false;
 
+    bool collisionDisable = false;
+
      void Start() 
     {
         myAudioSource = GetComponent<AudioSource>();
     }
+
+    void Update() 
+    {
+        DebugKeys();
+    }
+
+    void DebugKeys()
+    {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            LoadNextLevel();
+        }
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            collisionDisable = !collisionDisable;
+        }
+    }
+
     void OnCollisionEnter(Collision other) 
     {
-        if(inTransition){return;}
+        if(inTransition || collisionDisable){return;}
         switch(other.gameObject.tag)
         {
             case "Friendly":

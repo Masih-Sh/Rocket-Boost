@@ -33,46 +33,70 @@ public class Movment : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.Space))
         {
-           myRigidBody.AddRelativeForce(Vector3.up* boostThrust * Time.deltaTime);
-           if(!myAudioSource.isPlaying)
-           {
-            myAudioSource.PlayOneShot(mainEngine);
-           }
-           if(!mainEngineParticle.isPlaying)
-           {
-            mainEngineParticle.Play();
-           }
-        }        
+            StartThrusting();
+        }
         else
         {
-            myAudioSource.Stop();
-            mainEngineParticle.Stop();
+            StopThrusting();
         }
     }
-
     void Rotation()
     {
         if(Input.GetKey(KeyCode.A))
         {
-            ApplyRotation(rotateThrust);
-            if(!rightThrusterParticle.isPlaying)
-            {
-                rightThrusterParticle.Play();
-            }            
+            RotatingLeft();
 
         }
         else if(Input.GetKey(KeyCode.D))
         {
-            ApplyRotation(-rotateThrust);
-            if(!leftThrusterParticle.isPlaying)
-            {
-             leftThrusterParticle.Play();
-            } 
+            RotationgRight();
         }
         else
         {
-            rightThrusterParticle.Stop();
-            leftThrusterParticle.Stop();
+            StopRotating();
+        }
+    }
+
+    void StopThrusting()
+    {
+        myAudioSource.Stop();
+        mainEngineParticle.Stop();
+    }
+
+    void StartThrusting()
+    {
+        myRigidBody.AddRelativeForce(Vector3.up * boostThrust * Time.deltaTime);
+        if (!myAudioSource.isPlaying)
+        {
+            myAudioSource.PlayOneShot(mainEngine);
+        }
+        if (!mainEngineParticle.isPlaying)
+        {
+            mainEngineParticle.Play();
+        }
+    }    
+
+    private void StopRotating()
+    {
+        rightThrusterParticle.Stop();
+        leftThrusterParticle.Stop();
+    }
+
+    private void RotationgRight()
+    {
+        ApplyRotation(-rotateThrust);
+        if (!leftThrusterParticle.isPlaying)
+        {
+            leftThrusterParticle.Play();
+        }
+    }
+
+    private void RotatingLeft()
+    {
+        ApplyRotation(rotateThrust);
+        if (!rightThrusterParticle.isPlaying)
+        {
+            rightThrusterParticle.Play();
         }
     }
 
