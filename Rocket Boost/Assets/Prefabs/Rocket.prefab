@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boostThrust: 800
-  rotateThrust: 100
+  rotateThrust: 200
   mainEngineParticle: {fileID: 2018791036165831807}
   rightThrusterParticle: {fileID: 3014247689943591285}
   leftThrusterParticle: {fileID: 2523804940072204524}
